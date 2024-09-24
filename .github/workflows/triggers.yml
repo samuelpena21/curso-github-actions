@@ -1,0 +1,19 @@
+name: Triggers
+run-name: I'm learning how to write triggers for Github Actions!
+
+on: 
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  issues:
+    types: [ "opened", "edited", "deleted" ]
+
+jobs:
+  display-message:
+    name: Display a message
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display a message
+        run: echo "Hello, world!"
+
