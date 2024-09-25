@@ -47,5 +47,8 @@ jobs:
         run: echo "USERNAME=${{ inputs.name }}" >> $GITHUB_ENV
       - name: Define language
         run: echo "LANGUAGE=${{ inputs.favourite_language }}" >> $GITHUB_ENV
-        
+      - name: Build and run program
+        run: |
+          kotlinc main.kt -include-runtime -d main.jar
+          kotlin main.jar
 
