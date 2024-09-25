@@ -1,0 +1,22 @@
+name: Contexts
+run-name: I'm learning about different types of contexts for Github Actions!
+
+on: 
+    issues:
+        types: [opened, edited, deleted]
+
+    issue_comment:
+        types: [created, edited, deleted]
+
+    pull_request:
+        types: [opened, synchronize, reopened]
+jobs:
+    display-editor-message:
+        name: Display the editor message
+        runs-on: ubuntu-latest
+        steps:
+            - name: Display the editor message
+              env:
+                EDITOR: ${{ github.actor }}
+              run: echo "Hey, $EDITOR has made a change in the repo!"
+
