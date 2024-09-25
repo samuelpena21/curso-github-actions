@@ -7,10 +7,10 @@ fun main() {
 
 
     when {
-        name != null && favouriteLanguage != null -> {
+        name.isNotEmpty() && favouriteLanguage.isNotEmpty() -> {
             println("Hello, $name! Your favourite language is $favouriteLanguage")
         }
-        name != null -> {
+        name.isNotEmpty() -> {
             println("Hello, $name!")
         }
         else -> {
