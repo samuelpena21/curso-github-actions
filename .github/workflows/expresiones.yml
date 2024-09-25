@@ -1,0 +1,44 @@
+name: Expressions
+run-name: I'm learning how to write expressions for Github Actions!
+
+on: 
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [ main ]
+  workflow_dispatch:
+    inputs:
+        age:
+            description: 'Your age'
+            required: true
+            default: 18
+            type: number
+        name:
+            description: 'Your name'
+            required: true
+            default: Jose
+            type: string
+jobs:
+    adult:
+        if: ${{ inputs.age >= 18 }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: Display Adult Message
+              run: echo "You are an adult!"
+    minor:
+        if: ${{ inputs.age < 18 }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: Display Minor Message
+              run: echo "You are a minor!"
+              
+    show-pull-request-name:
+        if: ${{ github.event_name == 'pull_request' }}
+        runs-on: ubuntu-latest
+        steps:
+            - name: Display Pull Request Title
+              env:
+                TITLE: ${{ github.event.pull_request.title }}
+              run: echo The title of the pull request is $TITLE
+    
+
+    
