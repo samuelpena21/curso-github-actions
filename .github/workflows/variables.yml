@@ -1,0 +1,14 @@
+name: Variables
+run-name: I'm learning how to write variables for Github Actions!
+
+on: 
+    workflow_dispatch:
+env: 
+    STORED_NAME: ${{ vars.NAME }}
+jobs:
+    display-name:
+        name: Display the name
+        runs-on: ubuntu-latest
+        steps:
+            - name: Display the name
+              run: echo "Hey, $STORED_NAME!"
