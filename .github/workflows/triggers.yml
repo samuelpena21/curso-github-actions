@@ -1,0 +1,54 @@
+name: Triggers
+run-name: I'm learning how to write triggers for Github Actions!
+
+on: 
+  push:
+    branches: [ main ]
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [ main ]
+  issues:
+    types: [ opened, edited, deleted ]
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+    inputs:
+      favourite_language:
+        description: 'Favourite Programming Language'
+        default: Kotlin
+        required: true
+        type: choice
+        options:
+        - Python
+        - JavaScript
+        - Go
+        - Kotlin
+      name:
+        description: 'Your name'
+        required: true
+        default: Jose
+        type: string
+
+jobs:
+  display-message:
+    name: Display a message
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display a message
+        run: echo "Hello, world!"
+  
+  display-hello-world-message:
+    name: Display hello World
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Define name
+        run: echo "USERNAME=${{ inputs.name }}" >> $GITHUB_ENV
+      - name: Define language
+        run: echo "LANGUAGE=${{ inputs.favourite_language }}" >> $GITHUB_ENV
+      - name: Build and run program
+        run: |
+          kotlinc main.kt -include-runtime -d main.jar
+          kotlin main.jar
+
