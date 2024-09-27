@@ -3,6 +3,10 @@ run-name: I'm learning how to write variables for Github Actions!
 
 on: 
     workflow_dispatch:
+
+    pull_request:
+        types: [opened, synchronize, reopened]
+        branches: [ main ]
 env: 
     STORED_NAME: ${{ vars.NAME }}
 jobs:
