@@ -1,8 +1,8 @@
 
 
 fun main() {
-    val name = System.getenv("USERNAME")
-    val favouriteLanguage = System.getenv("LANGUAGE")
+    val name = System.getenv("USERNAME").orEmpty()
+    val favouriteLanguage = System.getenv("LANGUAGE").orEmpty()
 
 
 
